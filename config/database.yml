@@ -26,7 +26,7 @@ production:
   adapter: mysql2
   database: hundred_days_running_prodution
   username: root
-  password: 
+  password: flower8peg
   pool: 5
   timeout: 5000
 
