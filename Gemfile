@@ -46,4 +46,4 @@ end
 gem 'devise'
 gem "omniauth"
 gem "omniauth-strava"
-
+gem 'unicorn'
