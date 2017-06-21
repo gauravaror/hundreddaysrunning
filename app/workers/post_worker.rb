@@ -56,10 +56,12 @@ class PostWorker
    seconds = 0;
    links = 'Links';
    activities.each do |child|
-	distance += child['distance']
-	seconds += child['moving_time']
-	links += ';'
-	links += 'https://www.strava.com/activities/' + child['id'].to_s
+	if child['type'].eql? 'Run'
+	  distance += child['distance']
+	  seconds += child['moving_time']
+	  links += ';'
+	  links += 'https://www.strava.com/activities/' + child['id'].to_s
+	end
    end
    distance = distance/1000
    puts distance
