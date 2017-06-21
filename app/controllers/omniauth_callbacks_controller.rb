@@ -7,8 +7,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       set_flash_message(:notice, :success, :kind => "Strava") if is_navigational_format?
     else
       session["devise.strava_data"] = request.env["omniauth.auth"]
-      redirect_to user_path
     end
+    redirect_to user_path
   end
 
   def failure
