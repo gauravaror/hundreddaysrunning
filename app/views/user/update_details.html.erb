@@ -1,0 +1,13 @@
+<%= @user.email %>
+<%= @user.firstname %>
+<%= @user.lastname %>
+<%= @user.dob %>
+<%= @user.reporting_email %>
+
+<%= simple_form_for @user do |f| %>
+  <%= f.input :email %>
+  <%= f.input :dob , as: :date, start_year: Date.today.year - 100,
+                              end_year: Date.today.year - 3 %>
+  <%= f.input :reporting_email %>
+  <%= f.button :submit %>
+<% end %>

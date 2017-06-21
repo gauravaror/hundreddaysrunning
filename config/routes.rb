@@ -6,6 +6,12 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
    root 'user#home'
 
+   post '/save_details' => 'user#save_details'
+   get '/users/:id', :to => 'user#update_details', :as => :user
+   patch '/users/:id', :to => 'user#save_details'
+   get '/days/', :to => 'user#my_done_days', :as => :my_done_days
+   get '/submit/:date', :to => 'user#submit_run'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -47,3 +47,6 @@ gem 'devise'
 gem "omniauth"
 gem "omniauth-strava"
 gem 'unicorn'
+gem 'simple_form'
+gem 'sidekiq'
+gem 'strava-api-v3'
