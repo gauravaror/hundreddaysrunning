@@ -1,6 +1,6 @@
 class UserController < ApplicationController
 
-  before_filter :require_login
+  before_filter :require_login, except: [:login_home]
 
   def login_home
     if user_signed_in?
