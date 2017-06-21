@@ -1,6 +1,8 @@
 class UserController < ApplicationController
 
-  def home
+  before_filter :require_login
+
+  def login_home
     if user_signed_in?
       redirect_to current_user
     end
@@ -13,7 +15,7 @@ class UserController < ApplicationController
   def save_details
     user = current_user
     user.update!(user_params)
-    redirect_to user
+    redirect_to root_url
   end
 
   def my_done_days
@@ -34,4 +36,11 @@ class UserController < ApplicationController
   def submit_params
     params.permit(:date, :user_id)
   end
+
+  def require_login
+  unless current_user
+    redirect_to login_path
+  end
+end
+
 end

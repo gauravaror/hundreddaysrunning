@@ -8,6 +8,17 @@ class PostWorker
   include Sidekiq::Worker
 
   def perform(user_id, date)
+    if user_id.eql? -1
+      date = DateTime.now.strftime("%Y-%m-%d")
+      User.all.each do |us|
+        post_it(us.id, date)
+      end
+    else
+      post_it(user_id,date)
+    end
+  end
+
+  def post_it(user_id, date)
     # Do something
     user = User.find(user_id)
     http = Net::HTTP.new('app.100daysofrunning.in', '80')
@@ -62,6 +73,9 @@ class PostWorker
 	  links += ';'
 	  links += 'https://www.strava.com/activities/' + child['id'].to_s
 	end
+   end
+   if distance.eql? 0
+     return
    end
    distance = distance/1000
    puts distance

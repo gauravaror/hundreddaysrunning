@@ -36,7 +36,7 @@ require 'active_support'
     runnerId = fragment.at('input[name="runnerId"]')['value']
     puts "runnerId"
     puts runnerId
-    date = "2017-06-18"
+    date = "2017-06-11"
     start_date = DateTime.parse(date+' 00:00:00').to_time
     end_date = DateTime.parse(date+' 23:59:59').to_time
     puts start_date

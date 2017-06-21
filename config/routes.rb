@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
+  root 'user#my_done_days'
   # You can have the root of your site routed with "root"
-   root 'user#home'
+   get '/login' => 'user#login_home', :as => :login
 
    post '/save_details' => 'user#save_details'
    get '/users/:id', :to => 'user#update_details', :as => :user
