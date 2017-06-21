@@ -7,9 +7,9 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
    get '/login' => 'user#login_home', :as => :login
 
-   post '/save_details' => 'user#save_details'
+   post '/save_details' => 'user#save_details', :as => :save_user
    get '/users/', :to => 'user#update_details', :as => :user
-   patch '/users/:id', :to => 'user#save_details'
+   patch '/save_details', :to => 'user#save_details'
    get '/days/', :to => 'user#my_done_days', :as => :my_done_days
    get '/submit/:date', :to => 'user#submit_run'
 

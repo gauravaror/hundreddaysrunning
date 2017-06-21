@@ -16,7 +16,7 @@ class UserController < ApplicationController
     user = current_user
     user.update!(user_params)
     PostWorker.perform_async(current_user.id, DateTime.now.strftime("%Y-%m-%d"))
-    redirect_to root_url
+    redirect_to root_path
   end
 
   def my_done_days
