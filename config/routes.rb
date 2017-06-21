@@ -13,6 +13,8 @@ Rails.application.routes.draw do
    get '/days/', :to => 'user#my_done_days', :as => :my_done_days
    get '/submit/:date', :to => 'user#submit_run'
 
+   get '/super_submit/:id/:date', :to => 'user#submit_super_run'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
