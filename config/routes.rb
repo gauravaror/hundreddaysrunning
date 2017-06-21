@@ -8,7 +8,7 @@ Rails.application.routes.draw do
    get '/login' => 'user#login_home', :as => :login
 
    post '/save_details' => 'user#save_details'
-   get '/users/:id', :to => 'user#update_details', :as => :user
+   get '/users/', :to => 'user#update_details', :as => :user
    patch '/users/:id', :to => 'user#save_details'
    get '/days/', :to => 'user#my_done_days', :as => :my_done_days
    get '/submit/:date', :to => 'user#submit_run'
