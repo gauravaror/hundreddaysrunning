@@ -60,7 +60,7 @@ class PostWorker
     end_date = DateTime.parse(date+' 23:59:59 IST').to_time
     puts start_date
     puts end_date
-   client = Strava::Api::V3::Client.new(:access_token => "64cb3f23dd6895216bccd6c57eee08c2fb999534")
+   client = Strava::Api::V3::Client.new(:access_token => user.access_token)
    activities = client.list_athlete_activities(:after => start_date.to_f, :before => end_date.to_f)
    puts activities
    distance = 0;
