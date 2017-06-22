@@ -1,9 +1,44 @@
 <div class="nonheadimage">
-<%  @runs.each do |run| %>
-<%= run.day.day        %>
-<%= run.distance       %>
-<%= run.time           %>
-<%= run.link %>
-<br/>
+  <div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Your Runs</div>
+  <div class="panel-body">
+    <p>
+      Resubmit Run will try to post your data in background. Please don't resubmit again and again.
+      Refresh this page after sometime to check updated runs after your recent request is processed.
+    </p>
+  </div>
+  <!-- Table -->
+  <table class="table table-condensed   center_div">
+
+ <tr>
+   <th>Date</th>
+   <th>Distance</th>
+   <th>Time</th>
+   <th>Run link</th>
+   <th>Resubmit Run</th>
+ </tr>
+    <%  @runs.each do |run| %>
+    <tr>
+      <td>
+        <%= run.day.day        %>
+      </td>
+      <td>
+        <%= run.distance       %>
+      </td>
+      <td>
+        <%= run.time           %>
+      </td>
+      <td>
+        <%= run.link %>
+      </td>
+      <td>
+        <a role="button" href="/submit/<%=run.day.day%>" class="btn btn-default">Resubmit Run</button>
+      </td>
+    </tr>
 <% end %>
+</table>
+</div>
+
+</ul>
 </div>

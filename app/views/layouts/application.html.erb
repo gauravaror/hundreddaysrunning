@@ -21,11 +21,11 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js" integrity="sha384-ZoaMbDF+4LeFxg6WdScQ9nnR1QC2MIRxA1O9KWEXQwns1G8UNyIEZIQidzb0T1fo" crossorigin="anonymous"></script>
 <![endif]-->
 <!-- Plugin JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb" crossorigin="anonymous"></script>
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" integrity="sha384-mE6eXfrb8jxl0rzJDBRanYqgBxtJ6Unn4/1F7q4xRRyIw7Vdg9jP4ycT7x1iVsgb" crossorigin="anonymous"></script>
 
   <!-- Navigation -->
   <nav id="mainNav"  <% if @affix_value != nil && (@affix_value > 0) %>  data-spy="affix" data-offset-top=<%= @affix_value%>  <%end%>   class="navbar navbar-default navbar-custom navbar-fixed-top <% if @affix_value == nil ||  (@affix_value.eql? 0) %> affix <%end%>">
@@ -45,13 +45,10 @@
                       <a href="#page-top"></a>
                   </li>
                   <li>
-                      <a class="page-scroll" href="/login#about">About</a>
+                      <a class="page-scroll" href="/login#about">Configuration</a>
                   </li>
                   <li>
-                      <a class="page-scroll" href="/login#team">Team</a>
-                  </li>
-                  <li>
-                      <a class="page-scroll" href="/login#contact">Contact</a>
+                      <a class="page-scroll" href="/login#services">Features</a>
                   </li>
                   <li>
                       <a class="page-scroll" href="/days/">Runs</a>
