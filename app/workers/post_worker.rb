@@ -10,8 +10,10 @@ class PostWorker
   def perform(user_id, date)
     if user_id.eql? -1
       date = DateTime.now.strftime("%Y-%m-%d")
+      prev = Date.today.prev_day.strftime("%Y-%m-%d")
       User.all.each do |us|
         post_it(us.id, date)
+        post_it(us.id, prev)
       end
     else
       post_it(user_id,date)
