@@ -3,9 +3,10 @@ class UserController < ApplicationController
   before_filter :require_login, except: [:login_home]
 
   def login_home
-    if user_signed_in?
-      redirect_to current_user
-    end
+    #if user_signed_in?
+    #  redirect_to current_user
+    #end
+    @affix_value = 100
   end
 
   def update_details
