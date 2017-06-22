@@ -22,7 +22,7 @@ class UserController < ApplicationController
 
   def my_done_days
       PostWorker.perform_async(current_user.id, DateTime.now.strftime("%Y-%m-%d"))
-      @runs = current_user.runs
+      @runs = current_user.runs.order(day_id: :asc)
   end
 
   def submit_run
