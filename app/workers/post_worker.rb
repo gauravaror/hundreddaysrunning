@@ -72,8 +72,10 @@ class PostWorker
 	if child['type'].eql? 'Run'
 	  distance += child['distance']
 	  seconds += child['moving_time']
-	  links += ';'
-	  links += 'https://www.strava.com/activities/' + child['id'].to_s
+	  links += ' '
+    if !child['private']
+	     links += 'https://www.strava.com/activities/' + child['id'].to_s
+     end
 	end
    end
    if distance.eql? 0
