@@ -67,7 +67,7 @@ class PostWorker
    puts activities
    distance = 0;
    seconds = 0;
-   links = 'Links';
+   links = ' ';
    activities.each do |child|
 	if child['type'].eql? 'Run'
 	  distance += child['distance']
