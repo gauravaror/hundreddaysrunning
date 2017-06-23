@@ -21,5 +21,12 @@ class User < ActiveRecord::Base
              # uncomment the line below to skip the confirmation emails.
              # user.skip_confirmation!
            end
+
+           user = where(provider: auth.provider, uid: auth.uid).first
+           #logger.debug "access_token check  #{!(user.access_token.eql? auth.credentials.token)} auth #{auth.credentials.token} our token #{user.access_token}"
+           if !(user.access_token.eql? auth.credentials.token)
+             user.update(access_token: auth.credentials.token)
+           end
+           return user
          end
 end
