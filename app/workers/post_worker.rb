@@ -69,11 +69,13 @@ class PostWorker
    seconds = 0;
    links = ' ';
    activities.each do |child|
+   num_link = 0;
 	if child['type'].eql? 'Run'
 	  distance += child['distance']
 	  seconds += child['moving_time']
-    if !child['private']
-       links += 'https://www.strava.com/activities/' + child['id'].to_s
+    if (!child['private'] && (num_link < 2))
+       num_link = num_link +1;
+       links += 'https://www.strava.com/activities/' + child['id'].to_s;
        links += ' ; '
      end
 	end
