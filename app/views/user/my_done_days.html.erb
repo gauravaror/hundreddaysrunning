@@ -18,6 +18,23 @@
    <th>Run link</th>
    <th>Resubmit Run</th>
  </tr>
+ <%  @missing_days.each do |missing| %>
+   <tr>
+     <td>
+       <%= missing.day        %>
+     </td>
+     <td> </td>
+     <td> </td>
+     <td> </td>
+     <td>
+       <% if missing.day >= 1.week.ago && missing.day <= Time.now %>
+          <a role="button" href="/submit/<%=missing.day%>" class="btn btn-default">Resubmit Run</button>
+         <%end%>
+     </td>
+   </tr>
+
+ <% end %>
+
     <%  @runs.each do |run| %>
     <tr>
       <td>
@@ -33,7 +50,10 @@
         <%= run.link %>
       </td>
       <td>
-        <a role="button" href="/submit/<%=run.day.day%>" class="btn btn-default">Resubmit Run</button>
+        <% if run.day.day >= 1.week.ago && run.day.day <= Time.now %>
+
+         <a role="button" href="/submit/<%=run.day.day%>" class="btn btn-default">Resubmit Run</button> 
+          <% end %>
       </td>
     </tr>
 <% end %>

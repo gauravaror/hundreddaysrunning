@@ -9,11 +9,11 @@ class PostWorker
 
   def perform(user_id, date)
     if user_id.eql? -1
-      date = DateTime.now.strftime("%Y-%m-%d")
-      prev = Date.today.prev_day.strftime("%Y-%m-%d")
       User.all.each do |us|
-        post_it(us.id, date)
-        post_it(us.id, prev)
+        missing_days = Day.where.not(:id => us.runs.map(&:day_id)).where("day >= ?", 1.week.ago).where("day <= ?", Time.now )
+        missing_days.all.each do |days|
+          post_it(us.id, days.day.strftime("%Y-%m-%d"))
+        end
       end
     else
       post_it(user_id,date)
