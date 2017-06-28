@@ -130,9 +130,9 @@ class PostWorker
     if day != nil
       run = day.runs.where(user_id: user_id).first
       if run == nil
-        day.runs.create(:user_id => user_id, :distance => detail[:distance], :time => detail[:time], :link => detail[:link])
+        day.runs.create(:user_id => user_id, :distance => detail[:distance], :time => detail[:time], :link => detail[:link].chars.slice(0,50).join)
       else
-        run.update(:user_id => user_id, :distance => detail[:distance], :time => detail[:time], :link => detail[:link])
+        run.update(:user_id => user_id, :distance => detail[:distance], :time => detail[:time], :link => detail[:link].chars.slice(0,50).join)
       end
     end
     end
