@@ -51,3 +51,4 @@ gem 'simple_form'
 gem 'sidekiq'
 gem 'strava-api-v3'
 gem "sidekiq-cron"
+gem 'compass-rails'

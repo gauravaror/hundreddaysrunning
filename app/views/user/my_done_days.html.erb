@@ -19,6 +19,8 @@
    <th>Resubmit Run</th>
  </tr>
  <%  @missing_days.each do |missing| %>
+
+
    <tr>
      <td>
        <%= missing.day        %>
@@ -52,13 +54,11 @@
       <td>
         <% if run.day.day >= 1.week.ago && run.day.day <= Time.now %>
 
-         <a role="button" href="/submit/<%=run.day.day%>" class="btn btn-default">Resubmit Run</button> 
+         <a role="button" href="/submit/<%=run.day.day%>" class="btn btn-default">Resubmit Run</button>
           <% end %>
       </td>
     </tr>
 <% end %>
 </table>
 </div>
-
-</ul>
 </div>
