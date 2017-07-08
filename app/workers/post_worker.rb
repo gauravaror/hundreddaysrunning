@@ -26,7 +26,13 @@ class PostWorker
     http = Net::HTTP.new('app.100daysofrunning.in', '80')
     puts "=========Doing Login================"
     puts user.reporting_email
-    puts user.dob.strftime("DDMMYYYY")
+    if user.dob
+      puts user.dob.strftime("DDMMYYYY")
+    else
+      puts "User " + user.reporting_email + " doesn't have dob updated  exiting the flow"
+      return
+    end
+
     data = 'username=' + user.reporting_email  + '&password=' + user.dob.strftime("%d%m%Y");
     headers = {
       'Content-Type' => 'application/x-www-form-urlencoded'
