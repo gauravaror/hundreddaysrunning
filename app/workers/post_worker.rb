@@ -12,7 +12,11 @@ class PostWorker
       User.all.each do |us|
         missing_days = Day.where.not(:id => us.runs.map(&:day_id)).where("day >= ?", 1.week.ago).where("day <= ?", Time.now )
         missing_days.all.each do |days|
-          post_it(us.id, days.day.strftime("%Y-%m-%d"))
+          begin
+            post_it(us.id, days.day.strftime("%Y-%m-%d"))
+          rescue
+            puts "Failed performing post for " + us.id + " day  " + days.day.strftime("%Y-%m-%d")
+          end
         end
       end
     else
