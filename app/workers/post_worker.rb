@@ -12,11 +12,7 @@ class PostWorker
       User.all.each do |us|
         missing_days = Day.where.not(:id => us.runs.map(&:day_id)).where("day >= ?", 1.week.ago).where("day <= ?", Time.now )
         missing_days.all.each do |days|
-          begin
             post_it(us.id, days.day.strftime("%Y-%m-%d"))
-          rescue
-            puts "Failed performing post for " + us.id + " day  " + days.day.strftime("%Y-%m-%d")
-          end
         end
       end
     else
@@ -58,7 +54,14 @@ class PostWorker
     resp.each {|key, val| puts key + ' = ' + val}
     puts resp.body
     fragment = Nokogiri::HTML.fragment(resp.body)
-    runnerId = fragment.at('input[name="runnerId"]')['value']
+    runner = fragment.at('input[name="runnerId"]')
+    runnerId = ""
+    if runner
+      runnerId = runner['value']
+    else
+      puts "User " + user.reporting_email + " probably not registered with 100daysofrunning"
+      return
+    end
     puts "runnerId"
     puts runnerId
     #date = "2017-06-21"
