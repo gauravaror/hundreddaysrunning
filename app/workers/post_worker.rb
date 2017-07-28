@@ -10,7 +10,7 @@ class PostWorker
   def perform(user_id, date)
     if user_id.eql? -1
       User.all.each do |us|
-        missing_days = Day.where.not(:id => us.runs.map(&:day_id)).where("day >= ?", 1.week.ago).where("day <= ?", Time.now )
+        missing_days = Day.where.not(:id => us.runs.map(&:day_id).append(Day.where(:day => Time.now).first.id)).where("day >= ?", 1.week.ago).where("day <= ?", Time.now )
         missing_days.all.each do |days|
             post_it(us.id, days.day.strftime("%Y-%m-%d"))
         end
@@ -86,7 +86,7 @@ class PostWorker
 	if child['type'].eql? 'Run'
 	  distance += child['distance']
 	  seconds += child['moving_time']
-    if (!child['private'] && (num_link < 2))
+    if (!child['private'] && (num_link < 3))
        num_link = num_link +1;
        links += 'https://www.strava.com/activities/' + child['id'].to_s;
        links += ' ; '
@@ -143,9 +143,9 @@ class PostWorker
     if day != nil
       run = day.runs.where(user_id: user_id).first
       if run == nil
-        day.runs.create(:user_id => user_id, :distance => detail[:distance], :time => detail[:time], :link => detail[:link].chars.slice(0,50).join)
+        day.runs.create(:user_id => user_id, :distance => detail[:distance], :time => detail[:time], :link => detail[:link].chars.slice(0,500).join)
       else
-        run.update(:user_id => user_id, :distance => detail[:distance], :time => detail[:time], :link => detail[:link].chars.slice(0,50).join)
+        run.update(:user_id => user_id, :distance => detail[:distance], :time => detail[:time], :link => detail[:link].chars.slice(0,500).join)
       end
     end
     end
