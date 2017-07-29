@@ -1,0 +1,19 @@
+<div class="nonheadimage">
+<%= month_calendar events: @runs do |date, meetings| %>
+  <%= date.day %>
+  <% if meetings.first %>
+  <div>
+    Day #<%= meetings.first.day.id %> </br>
+    Date: <%= meetings.first.day.day %> </br>
+    Distance:  <%= meetings.first.distance %> </br>
+    Time: <%= meetings.first.time %> </br>
+    Run Link: <%= meetings.first.link %>
+    <% if meetings.first.day.day >= 1.week.ago && meetings.first.day.day <= Time.now %>
+
+     <a role="button" href="/submit/<%=meetings.first.day.day%>" class="btn btn-default">Resubmit Run</button>
+      <% end %>
+
+  </div>
+  <%end%>
+
+<% end %>
