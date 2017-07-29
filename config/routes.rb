@@ -16,6 +16,7 @@ Rails.application.routes.draw do
    get '/users/', :to => 'user#update_details', :as => :user
    patch '/save_details', :to => 'user#save_details'
    get '/days/', :to => 'user#my_done_days', :as => :my_done_days
+   get '/calender/', :to => 'user#calender'
    get '/submit/:date', :to => 'user#submit_run'
 
    get '/super_submit/:id/:date', :to => 'user#submit_super_run'

@@ -26,6 +26,12 @@ class UserController < ApplicationController
       @missing_days = Day.where.not(:id => @runs.map(&:day_id)).where("day >= ?", 1.week.ago).where("day <= ?", Time.now )
   end
 
+  def calender
+      PostWorker.perform_async(current_user.id, DateTime.now.strftime("%Y-%m-%d"))
+      @runs = current_user.runs.order(day_id: :asc)
+      @missing_days = Day.where.not(:id => @runs.map(&:day_id)).where("day >= ?", 1.week.ago).where("day <= ?", Time.now )
+  end
+
   def submit_run
     PostWorker.perform_async(current_user.id, params['date'])
     redirect_to my_done_days_path
